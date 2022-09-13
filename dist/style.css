@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bowlby+One&family=Dela+Gothic+One&family=Germania+One&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"); /* --- A FUNCTION THAT DIVIDE PIXELS INTO REM + AN ERROR MESSAGE --- */ /* ---- SASS MAP FOR MOBILE FIRST ---- */
+/* ---- SASS MAP FOR DESKTOP FIRST - EMERGENCY ONLY ---- */
+/* - COLORE VARIABLES - */
+h1,
+h2,
+h3 {
+  font-family: "Germania", sans-serif;
+  color: #f4f0e5;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 6rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  width: 80%;
+  color: #177115;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4.5vw, 4.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h3 {
+  font-size: clamp(1rem, 3vw, 3rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h4,
+h5,
+h6,
+p,
+a {
+  font-family: "Open sans", sans-serif;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #f4f0e5;
+  font-weight: 700;
+  font-size: clamp(0.5rem, 0.75rem, 1rem);
+}
+a:hover,
+a:visited:hover,
+a:active:hover {
+  color: #51dd4f;
+}
+
+ul {
+  list-style: none;
+}
+
+/* -- GRADIENT TEXT -- */
+.about {
+  height: 100vh;
+}
+.about__text {
+  font-size: 2em;
+  color: #177115;
+  text-align: center;
+  line-height: 100vh;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f0e5;
+}
+
+img,
+video {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* - the forwadrs will automatically look for the _index.scss in each folder - */
+/* this one is specifically look for the index.scss file in the global folder*//*# sourceMappingURL=style.css.map */

@@ -1,0 +1,86 @@
+@use 'functions' as f; 
+@use 'colors' as c; 
+
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bowlby+One&family=Dela+Gothic+One&family=Germania+One&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+
+
+$mainFont: 'Open sans', sans-serif; 
+$headingFont: 'Germania', sans-serif; 
+
+h1, 
+h2, 
+h3{
+    font-family: $headingFont;
+    color: c.$backgroundBeige;
+    text-align: center;
+}
+
+h1{
+    //font-size: clamp(f.rem(28), f.rem(40) + 2vw, f.rem(60));
+    font-size: clamp(2rem, 6vw, 6rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    width: 80%;
+    color: c.$primaryGreen;
+}
+
+h2{
+    //font-size: clamp(f.rem(35), f.rem(50) + 2vw, f.rem(60));
+    font-size: clamp(1.8rem, 4.5vw, 4.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+}
+h3{
+    //font-size: clamp(f.rem(20), f.rem(35) + 2vw, f.rem(45));
+    font-size: clamp(1rem, 3vw, 3rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h4, 
+h5, 
+h6, 
+p, 
+a{
+    font-family: $mainFont;
+}
+
+a,
+a:visited,
+a:active{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: c.$backgroundBeige;
+    font-weight: 700;
+    font-size: clamp(f.rem(8), f.rem(12), f.rem(16));
+    &:hover{
+        color: c.$secondaryGreen;
+    }
+}
+
+ul{
+    list-style: none;
+}
+
+/* -- GRADIENT TEXT -- */
+
+@mixin gradientTxt {
+    max-width: 24ch;
+    background: linear-gradient(c.$primaryGreen, c.$backgroundBeige);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px c.$primaryGreen;
+}
+.about{
+    height: 100vh;
+    &__text{
+        font-size: 2em;
+        color: c.$primaryGreen;
+        text-align: center;
+        line-height: 100vh;
+    }
+}

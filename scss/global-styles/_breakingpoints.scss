@@ -1,0 +1,35 @@
+@use 'functions' as f; 
+
+//700px, 900px, 1440px
+/* ---- SASS MAP FOR MOBILE FIRST ---- */
+$breakpoints-up: (
+    'medium': f.em(700), //700px
+    'large': f.em(900),  //900px
+    'xlarg': f.em(1440),
+);
+
+//699.98px, 899.98ps, 1439.98px (avoids overlap)
+/* ---- SASS MAP FOR DESKTOP FIRST - EMERGENCY ONLY ---- */
+$breakpoints-down: (
+    'small': f.em(699.98),
+    'medium': f.em(899.98),
+    'large': f.em(1439.98), 
+); 
+
+//create and name mixin with a parameter ($size) 
+@mixin breakpoint($size){
+    //this is the code that generated when you call your mixin
+    /* - mag-get() is a function that takes two parameters: 
+    the name of the sass-map we're loading data from and 
+    the name of the key we want to load the value from - */
+    @media (min-width: map-get($breakpoints-up, $size)){
+        //this will load all the style rules from  the mixin when we use it
+        @content; 
+    }
+};
+
+@mixin breakpoint-down($size){
+    @media (max-width: map-get($breakpoints-down, $size)){
+        @content; 
+    }
+}
