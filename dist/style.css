@@ -1,34 +1,98 @@
-@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bowlby+One&family=Dela+Gothic+One&family=Germania+One&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"); /* --- A FUNCTION THAT DIVIDE PIXELS INTO REM + AN ERROR MESSAGE --- */ /* ---- SASS MAP FOR MOBILE FIRST ---- */
+/* -- MERRIWEATHER & MULISH ---- */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.main {
+  max-width: 375px;
+  margin: 3rem auto;
+  background-color: antiquewhite;
+}
+
+.popular {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0 1.5rem;
+}
+.popular__card {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 1rem;
+}
+.popular__movie {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.popular__h3 {
+  max-width: 15ch;
+}
+.popular__title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.popular__img {
+  width: 85px;
+  height: 120px;
+  border-radius: 8px;
+}
+.popular__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.popular__btn {
+  border: 1px solid #AAA9B1;
+  padding: 4px 8px;
+  border-radius: 100px;
+}
+.popular__p {
+  color: #AAA9B1;
+  font-size: 10px;
+}
+.popular__genre {
+  background-color: #DBE3FF;
+  padding: 4px 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  color: #88A4E8;
+  font-size: 8px;
+}
+.popular__h4 {
+  color: #9C9C9C;
+  font-weight: 400;
+  font-size: 12px;
+}
+.popular__star {
+  color: #FFC319;
+}
+
+/* --- A FUNCTION THAT DIVIDE PIXELS INTO REM + AN ERROR MESSAGE --- */ /* ---- SASS MAP FOR MOBILE FIRST ---- */
 /* ---- SASS MAP FOR DESKTOP FIRST - EMERGENCY ONLY ---- */
 /* - COLORE VARIABLES - */
-h1,
-h2,
-h3 {
-  font-family: "Germania", sans-serif;
-  color: #f4f0e5;
+.basic__h1,
+.basic__h2 {
+  font-family: "Merriweather", serif;
+  color: #110E47;
   text-align: center;
+  text-transform: capitalize;
+  letter-spacing: 2%;
 }
 
 h1 {
-  font-size: clamp(2rem, 6vw, 6rem);
+  font-size: 16px;
   font-weight: 900;
-  text-transform: uppercase;
-  width: 80%;
-  color: #177115;
-}
-
-h2 {
-  font-size: clamp(1.8rem, 4.5vw, 4.5rem);
-  font-weight: 900;
-  text-transform: uppercase;
   text-align: center;
 }
 
-h3 {
-  font-size: clamp(1rem, 3vw, 3rem);
+.basic__h2 {
+  font-size: 16px;
   font-weight: 900;
-  text-transform: uppercase;
-  text-align: center;
+}
+
+.basic__h3 {
+  font-weight: 700;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-family: "Mulish", sans-serif;
+  letter-spacing: 2%;
 }
 
 h4,
@@ -36,7 +100,8 @@ h5,
 h6,
 p,
 a {
-  font-family: "Open sans", sans-serif;
+  font-family: "Mulish", sans-serif;
+  color: #000;
 }
 
 a,
@@ -44,14 +109,14 @@ a:visited,
 a:active {
   text-decoration: none;
   text-transform: uppercase;
-  color: #f4f0e5;
+  color: #000;
   font-weight: 700;
   font-size: clamp(0.5rem, 0.75rem, 1rem);
 }
 a:hover,
 a:visited:hover,
 a:active:hover {
-  color: #51dd4f;
+  color: #000;
 }
 
 ul {
@@ -64,7 +129,7 @@ ul {
 }
 .about__text {
   font-size: 2em;
-  color: #177115;
+  color: #000;
   text-align: center;
   line-height: 100vh;
 }
@@ -80,10 +145,6 @@ html {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
-}
-
-body {
-  background-color: #f4f0e5;
 }
 
 img,
