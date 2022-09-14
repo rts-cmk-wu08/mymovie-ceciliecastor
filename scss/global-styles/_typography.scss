@@ -8,8 +8,8 @@
 $mainFont: 'Mulish', sans-serif;
 $headingFont: 'Merriweather', serif;
 
-.basic__h1, 
-.basic__h2{
+h1, 
+h2{
     font-family: $headingFont;
     color: #110E47;
     text-align: center;
@@ -25,14 +25,14 @@ h1{
     text-align: center;
 }
 
-.basic__h2{
+h2{
     //font-size: clamp(f.rem(35), f.rem(50) + 2vw, f.rem(60));
     //font-size: clamp(1.8rem, 4.5vw, 4.5rem);
     font-size: 16px;
     font-weight: 900;
 
 }
-.basic__h3{
+h3{
     //font-size: clamp(f.rem(20), f.rem(35) + 2vw, f.rem(45));
     //font-size: clamp(1rem, 3vw, 3rem);
     font-weight: 700;

@@ -1,13 +1,138 @@
 .main{
     max-width: 375px;
     margin: 3rem auto;
-    background-color: antiquewhite;
 }
 
+/* ---- HEADER ---- */
+.header{
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-right: 1.5rem;
+    &__h1{
+        grid-area: 1 / 1;
+        place-self: center;
+    }
+}
+
+/* ---- TOGGLE BUTTON ---- */
+.toggle{
+    grid-area: 1 / 1;
+    justify-self: end;
+    align-self: center;
+    display: grid;
+    align-items: center;
+    &__switch{
+        position: relative;
+        display: inline-block;
+        width: 38px;
+        height: 21px;
+    }
+    &__checkbox{
+        opacity: 0;
+        width: 0;
+        height: 0;
+        &:checked{
+            background-color: #2196F3;
+            -webkit-transform: translateX(18px);
+            -ms-transform: translateX(18px);
+            transform: translateX(18px);
+        }
+        &:focus{
+            box-shadow: 0 0 1px #2196F3;
+        }
+    }
+    &__slider{
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #AAA9B1;
+        -webkit-transition: .4s;
+        transition: .4s;
+        border-radius: 34px;
+        &:checked{
+            background-color: #000;
+        }
+        &:focus{
+            box-shadow: 0 0 1px #2196F3;
+        }
+        &::before{
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+            margin: 1.5px;
+            -webkit-transform: translateX(18px);
+            -ms-transform: translateX(18px);
+            transform: translateX(18px);
+        }
+    }
+    
+}
+
+/* ---- NOW SHOWING SECTION ---- */
+.showing{
+    padding-left: 1.5rem;
+    &__flex{
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 41%;
+        gap: 1rem;
+        overflow-x: auto;
+        padding-right: 1.5rem;
+    }
+    &__title{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+    &__img{
+        //width: 143px;
+        height: auto;
+        border-radius: 8px;
+    }
+    &__info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__btn{
+        border: 1px solid #AAA9B1;
+        padding: 4px 8px;
+        border-radius: 100px;
+    }
+    &__h3{
+        max-width: 15ch;
+    }
+    &__h4{
+        color: #9C9C9C;
+        font-weight: 400;
+        font-size: 12px;
+    }
+    &__star{
+        color: #FFC319;
+    }
+}
+
+
+
+
+/* ---- POPULAR MOVIE SECTION ---- */
 .popular{
     display: grid;
     grid-template-columns: 1fr;
     padding: 0 1.5rem;
+    overflow-y: auto;
     &__card{
         display: grid;
         grid-template-columns: 1fr;
