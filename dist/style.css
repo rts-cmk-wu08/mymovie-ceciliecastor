@@ -179,6 +179,16 @@
   color: #FFC319;
 }
 
+/* ---- DETAILS PAGE ---- */
+.main--details {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.details {
+  background-color: white;
+}
+
 /* --- A FUNCTION THAT DIVIDE PIXELS INTO REM + AN ERROR MESSAGE --- */ /* ---- SASS MAP FOR MOBILE FIRST ---- */
 /* ---- SASS MAP FOR DESKTOP FIRST - EMERGENCY ONLY ---- */
 /* - COLORE VARIABLES - */

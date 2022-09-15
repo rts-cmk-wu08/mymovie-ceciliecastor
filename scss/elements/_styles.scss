@@ -186,3 +186,13 @@
         color: #FFC319;
     }
 }
+
+/* ---- DETAILS PAGE ---- */
+.main--details{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.details{
+    background-color: white;
+}

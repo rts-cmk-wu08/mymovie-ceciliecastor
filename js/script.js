@@ -2,31 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   //-------------------------------------------
 
   //API Key
-  const apiKey = "api_key=97d3331e327df20d1c0faca85f646034";
-  const baseURL = "https://api.themoviedb.org/3";
-  const nowShowing =
-    baseURL +
-    "/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&" +
-    apiKey;
-  const mostPopular =
-    baseURL + "/discover/movie?sort_by=popularity.desc&" + apiKey;
-  const imgURL = "https://image.tmdb.org/t/p/w500";
   const mainSection = document.querySelector(".main");
 
   /* ---- HEADER ---- */
   const headerSection = document.createElement("header");
   headerSection.classList.add("header");
   headerSection.innerHTML = `
-   <!-- <section class="header__info">
-         <div class="header__time">
-            ur 
-        </div>
-        <div class="header__info-right">
-            signal
-            internet
-            batteri
-        </div>
-    </section> -->
     <h1 class="header__h1">MyMovies</h1>
     <div class="header__toggle toggle">
         <label class="toggle__switch">
@@ -45,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((resOne) => resOne.json())
       .then((dataOne) => {
         showMoviesShowing(dataOne.results);
+        console.log(dataOne.results);
       });
   }
 
@@ -72,6 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
       showingSection.innerHTML = `
 
         <article class="showing__movie">
+            <a href="/details.html?id=${
+              movieOne.id
+            }" class="showing__movie-link">
             <img src="${
               imgURL + movieOne.poster_path
             }" alt="" class="showing__img">
@@ -84,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <h5 class="showing__h5 showing__h5--time basic__h5"></h5>
             </div>
+            </a>
         </article>
         `;
       showingFlex.append(showingSection);
