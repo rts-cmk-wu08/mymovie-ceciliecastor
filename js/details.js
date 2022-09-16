@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   //-------------------------------------------------------------------------------
 
-  const mainSectionDetails = document.querySelector(".main");
+  const mainSectionDetails = document.createElement("section");
+  bodySection.append(mainSectionDetails);
 
   const movieParams = new URLSearchParams(window.location.search);
   const movieID = movieParams.get("id");
@@ -13,34 +14,62 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((responseDetails) => responseDetails.json())
     .then((movieDeatils) => {
       console.log(movieDeatils);
-      const headerSectionDetails = document.createElement("header");
+      const headerSectionDetails = document.createElement("section");
       headerSectionDetails.classList.add("header-details");
       headerSectionDetails.innerHTML = `
-    <img class="header-details__img" src="${imgURL + movieDeatils.poster_path}">
     <div class="header-details__container">
-        <div class="header-details__toggle toggle">
-            <i class="header-details__back fa-regular fa-arrow-left"></i>
+            <i class="fa-regular fa-arrow-left header-details__back "></i>
             <label class="toggle__switch">
                 <input type="checkbox" class="toggle__checkbox">
                 <span class="toggle__slider round"></span>
             </label>
-        </div>
-        <p class="header-details__p basic__p">Play Trailer</p>
     </div>
 `;
-      mainSectionDetails.append(headerSectionDetails);
+      header.append(headerSectionDetails);
 
       /* ---- DETAILS PAGE ---- */
+
+      //ROUNDED IMDB SCORE
+      const imdbRounded =
+        Math.round((movieDeatils.vote_average + Number.EPSILON) * 10) / 10;
+
+      //TIME CONVERTER FUNCTION
+      function timeConverter(n) {
+        const num = n;
+        const hours = num / 60;
+        const rHours = Math.floor(hours);
+        const minutes = (hours - rHours) * 60;
+        const rMinutes = Math.round(minutes);
+        return rHours + "h " + rMinutes + "min";
+      }
+
+      //COUNTRY ABBREVIATION CONVERTER
+
+      const heroPhoto = document.createElement("section");
+      heroPhoto.classList.add("hero");
+      heroPhoto.innerHTML = `
+            <img class="hero__img" src="${
+              imgURL + movieDeatils.backdrop_path
+            }" alt="">
+            <i class="hero__play fa-sharp fa-solid fa-circle-play"></i>
+            <p class="hero__p basic__p">Play Trailer</p>
+      `;
+
+      mainElement.append(heroPhoto);
+
       const detailsSection = document.createElement("section");
       detailsSection.classList.add("details");
       detailsSection.innerHTML = `
+      
     <h1 class="details__h1">${movieDeatils.title}</h1>
-    <h4 class="details__imdb basic__h4"><i class="showing__star fa-sharp fa-solid fa-star"></i> ${movieDeatils.vote_average} / 10 IMDb</h4>
+    <h4 class="details__imdb details__p--light"><i class="showing__star fa-sharp fa-solid fa-star"></i> ${imdbRounded} / 10 IMDb</h4>
     <div class="details__genres"></div>
     <section class="details__section">
         <div class="details__length">
             <p class="details__p--light">Length</p>
-            <p class="details__p--dark">${movieDeatils.runtime}</p>
+            <p class="details__p--dark">${timeConverter(
+              movieDeatils.runtime
+            )}</p>
         </div>
         <div class="details__language">
             <p class="details__p--light">Language</p>
@@ -53,13 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
 </section>
     <section class="details__description">
         <h2 class="details__h2 baic__h2">Description</h2>
-        <p class="details__p basic__p">${movieDeatils.overview}</p>
+        <p class="details__p--light basic__p">${movieDeatils.overview}</p>
     </section>
     <section class="details__cast">
+        <div class="details__cast-heading">
         <h2 class="details__h2 basic__h2">Cast</h2>
         <a href="" class="details__btn showMore__btn">
                 <p class="details__p basic__p">See more</p>
         </a>
+        </div>
         <section class="details__cast-gallery">
             <div class="details__cell">
             </div>
@@ -67,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </section>
 `;
 
-      mainSectionDetails.append(detailsSection);
+      mainElement.append(detailsSection);
     });
 
   //FOREACH LOOP THROUGH THE ACTORS

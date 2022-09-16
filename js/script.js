@@ -1,12 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   //-------------------------------------------
 
-  //API Key
-  const mainSection = document.querySelector(".main");
-
   /* ---- HEADER ---- */
-  const headerSection = document.createElement("header");
-  headerSection.classList.add("header");
+  const headerSection = document.createElement("section");
+  headerSection.classList.add("header__section");
   headerSection.innerHTML = `
     <h1 class="header__h1">MyMovies</h1>
     <div class="header__toggle toggle">
@@ -16,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 </label>
   `;
-  mainSection.append(headerSection);
+  header.append(headerSection);
 
   /* ---- NOW SHOWING MOVIES ---- */
   moviesShowing(nowShowing);
@@ -41,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </a>
         </div>
     `;
-    mainSection.append(nowShowingGrid);
+    mainElement.append(nowShowingGrid);
 
     const showingFlex = document.createElement("section");
     showingFlex.classList.add("showing__flex");
@@ -52,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const showingSection = document.createElement("article");
       showingSection.classList.add("showing__card");
       showingSection.innerHTML = `
-
         <article class="showing__movie">
             <a href="/details.html?id=${
               movieOne.id
@@ -101,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </a>
         </div>
     `;
-    mainSection.append(popularMainGrid);
+    mainElement.append(popularMainGrid);
 
     //Kører en forEach loop, hvor der oprettes et movie card for hver objekt
     data.forEach((movie) => {

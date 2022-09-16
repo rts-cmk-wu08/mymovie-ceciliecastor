@@ -1,24 +1,120 @@
 /* -- MERRIWEATHER & MULISH ---- */
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-.main {
+/* --- A FUNCTION THAT DIVIDE PIXELS INTO REM + AN ERROR MESSAGE --- */ /* ---- SASS MAP FOR MOBILE FIRST ---- */
+/* ---- SASS MAP FOR DESKTOP FIRST - EMERGENCY ONLY ---- */
+/* - COLORE VARIABLES - */
+h1,
+h2 {
+  font-family: "Merriweather", serif;
+  color: #110E47;
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: 2%;
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: 900;
+  text-align: center;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+h3 {
+  font-weight: 700;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-family: "Mulish", sans-serif;
+  letter-spacing: 2%;
+}
+
+h4,
+h5,
+h6,
+p,
+a {
+  font-family: "Mulish", sans-serif;
+  color: #000;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: 700;
+  font-size: clamp(0.5rem, 0.75rem, 1rem);
+}
+a:hover,
+a:visited:hover,
+a:active:hover {
+  color: #000;
+}
+
+ul {
+  list-style: none;
+}
+
+/* -- GRADIENT TEXT -- */
+.about {
+  height: 100vh;
+}
+.about__text {
+  font-size: 2em;
+  color: #000;
+  text-align: center;
+  line-height: 100vh;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+video {
+  width: 100%;
+  overflow: hidden;
+}
+
+.body {
   max-width: 375px;
   margin: 3rem auto;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.main {
+  grid-area: 1/1;
+  display: grid;
+  width: 100%;
 }
 
 /* ---- HEADER ---- */
 .header {
   position: -webkit-sticky;
   position: sticky;
+  grid-area: 1/1;
   top: 0;
-  background-color: #fff;
   height: 60px;
   display: grid;
   grid-template-columns: 1fr;
-  padding-right: 1.5rem;
 }
-.header__h1 {
-  grid-area: 1/1;
-  place-self: center;
+.header__section {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* ---- TOGGLE BUTTON ---- */
@@ -40,12 +136,14 @@
   width: 0;
   height: 0;
 }
-.toggle__checkbox:checked {
+.toggle__checkbox:checked + .toggle__slider {
   background-color: #2196F3;
-  transform: translateX(18px);
 }
-.toggle__checkbox:focus {
+.toggle__checkbox:focus + .toggle__slider {
   box-shadow: 0 0 1px #2196F3;
+}
+.toggle__checkbox:checked + .toggle__slider:before {
+  transform: translateX(18px);
 }
 .toggle__slider {
   position: absolute;
@@ -74,6 +172,32 @@
   border-radius: 50%;
   margin: 1.5px;
   transform: translateX(18px);
+}
+
+/* ---- HERO SECTIOPN ---- */
+.hero {
+  grid-area: 1/1/6/2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 300px auto;
+}
+.hero__img {
+  grid-area: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.hero__play {
+  grid-area: 1/1;
+  place-self: center;
+  color: white;
+  margin-bottom: 3rem;
+}
+.hero__p {
+  grid-area: 1/1;
+  place-self: center;
+  color: white;
 }
 
 /* ---- NOW SHOWING SECTION ---- */
@@ -180,102 +304,66 @@
 }
 
 /* ---- DETAILS PAGE ---- */
-.main--details {
+.body--details {
   display: grid;
   grid-template-columns: 1fr;
 }
 
+.header-details {
+  grid-area: 1/1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 300px auto;
+}
+.header-details__container {
+  grid-area: 1/1;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
+}
+
 .details {
   background-color: white;
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  grid-area: 5/1/17/2;
 }
-
-/* --- A FUNCTION THAT DIVIDE PIXELS INTO REM + AN ERROR MESSAGE --- */ /* ---- SASS MAP FOR MOBILE FIRST ---- */
-/* ---- SASS MAP FOR DESKTOP FIRST - EMERGENCY ONLY ---- */
-/* - COLORE VARIABLES - */
-h1,
-h2 {
-  font-family: "Merriweather", serif;
-  color: #110E47;
-  text-align: center;
-  text-transform: capitalize;
-  letter-spacing: 2%;
-}
-
-h1 {
-  font-size: 16px;
-  font-weight: 900;
-  text-align: center;
-}
-
-h2 {
-  font-size: 16px;
-  font-weight: 900;
-}
-
-h3 {
-  font-weight: 700;
-  text-transform: capitalize;
-  font-size: 14px;
+.details__h1 {
   font-family: "Mulish", sans-serif;
-  letter-spacing: 2%;
-}
-
-h4,
-h5,
-h6,
-p,
-a {
-  font-family: "Mulish", sans-serif;
-  color: #000;
-}
-
-a,
-a:visited,
-a:active {
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #000;
+  max-width: 17ch;
+  font-size: 20px;
+  text-align: left;
   font-weight: 700;
-  font-size: clamp(0.5rem, 0.75rem, 1rem);
+  margin-bottom: 1rem;
 }
-a:hover,
-a:visited:hover,
-a:active:hover {
-  color: #000;
+.details__section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 1.5rem;
 }
-
-ul {
-  list-style: none;
+.details__description {
+  margin-bottom: 1.5rem;
 }
-
-/* -- GRADIENT TEXT -- */
-.about {
-  height: 100vh;
+.details__h2 {
+  text-align: left;
+  margin-bottom: 0.5rem;
 }
-.about__text {
-  font-size: 2em;
-  color: #000;
-  text-align: center;
-  line-height: 100vh;
+.details__p--light {
+  color: #9C9C9C;
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 400;
 }
-
-html {
-  box-sizing: border-box;
-  font-size: 100%;
+.details__imdb {
+  margin-bottom: 0.5rem;
 }
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
+.details__cast {
+  display: grid;
+  grid-template-columns: 1fr;
 }
-
-img,
-video {
-  width: 100%;
-  overflow: hidden;
+.details__cast-heading {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* - the forwadrs will automatically look for the _index.scss in each folder - */

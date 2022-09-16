@@ -1,3 +1,20 @@
+/* ---- DOM VARIABLER ---- */
+//BODY
+const bodySection = document.querySelector("body");
+
+//HEADER
+const header = document.createElement("header");
+header.classList.add("header");
+bodySection.append(header);
+
+//MAIN
+const mainElement = document.createElement("main");
+mainElement.classList.add("main");
+bodySection.append(mainElement);
+
+//FOOTER
+
+/* ---- URL VARIBLER ---- */
 const apiKey = "api_key=97d3331e327df20d1c0faca85f646034";
 const baseURL = "https://api.themoviedb.org/3";
 const nowShowing =

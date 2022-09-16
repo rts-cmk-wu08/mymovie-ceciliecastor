@@ -1,20 +1,29 @@
-.main{
+@use '../global-styles/' as gs; 
+
+.body{
     max-width: 375px;
     margin: 3rem auto;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.main{
+    grid-area: 1 / 1;
+    display: grid;
+    width: 100%;
 }
 
 /* ---- HEADER ---- */
 .header{
     position: sticky;
+    grid-area: 1 / 1;
     top: 0;
-    background-color: #fff;
     height: 60px;
     display: grid;
     grid-template-columns: 1fr;
-    padding-right: 1.5rem;
-    &__h1{
-        grid-area: 1 / 1;
-        place-self: center;
+    &__section{
+        display: flex;
+        justify-content: space-between;
     }
 }
 
@@ -35,14 +44,16 @@
         opacity: 0;
         width: 0;
         height: 0;
-        &:checked{
+        &:checked + .toggle__slider{
             background-color: #2196F3;
+        }
+        &:focus + .toggle__slider{
+            box-shadow: 0 0 1px #2196F3;
+        }
+        &:checked + .toggle__slider:before{
             -webkit-transform: translateX(18px);
             -ms-transform: translateX(18px);
             transform: translateX(18px);
-        }
-        &:focus{
-            box-shadow: 0 0 1px #2196F3;
         }
     }
     &__slider{
@@ -78,6 +89,31 @@
         }
     }
     
+}
+
+/* ---- HERO SECTIOPN ---- */
+.hero{
+    grid-area: 1 / 1 / 6 / 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px auto;
+    &__img{
+        grid-area: 1 / 1;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+    &__play{
+        grid-area: 1 / 1;
+        place-self: center;
+        color: white;
+        margin-bottom: 3rem ; 
+    }
+    &__p{
+        grid-area: 1 / 1;
+        place-self: center;
+        color: white;
+    }
 }
 
 /* ---- NOW SHOWING SECTION ---- */
@@ -123,9 +159,6 @@
         color: #FFC319;
     }
 }
-
-
-
 
 /* ---- POPULAR MOVIE SECTION ---- */
 .popular{
@@ -188,11 +221,64 @@
 }
 
 /* ---- DETAILS PAGE ---- */
-.main--details{
+.body--details{
     display: grid;
     grid-template-columns: 1fr;
 }
 
+.header-details{
+    grid-area: 1 / 1 ;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px auto;
+    &__container{
+        grid-area: 1 / 1;
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem 1.5rem;
+    }
+}
+
 .details{
     background-color: white;
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    grid-area: 5 / 1 / 17 / 2;
+    &__h1{
+        font-family: gs.$mainFont;
+        max-width: 17ch;
+        font-size: 20px;
+        text-align: left;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    &__section{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-bottom: 1.5rem;
+    }&__description{
+        margin-bottom: 1.5rem;
+    }
+    &__h2{
+        text-align: left;
+        margin-bottom: 0.5rem;
+    }
+    &__p--light{
+        color: #9C9C9C;
+        font-size: 12px;
+        line-height: 22px;
+        font-weight: 400;
+    }
+    &__imdb{
+        margin-bottom: 0.5rem;
+    }
+    &__cast{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    &__cast-heading{
+        display: flex;
+        justify-content: space-between;
+    }
 }
