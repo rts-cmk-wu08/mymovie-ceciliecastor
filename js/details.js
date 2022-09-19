@@ -19,10 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
       headerSectionDetails.innerHTML = `
     <div class="header-details__container">
             <i class="fa-regular fa-arrow-left header-details__back "></i>
+            <div class="toggle">
             <label class="toggle__switch">
                 <input type="checkbox" class="toggle__checkbox">
                 <span class="toggle__slider round"></span>
             </label>
+            </div>
     </div>
 `;
       header.append(headerSectionDetails);
@@ -84,26 +86,53 @@ document.addEventListener("DOMContentLoaded", () => {
         <h2 class="details__h2 baic__h2">Description</h2>
         <p class="details__p--light basic__p">${movieDeatils.overview}</p>
     </section>
-    <section class="details__cast">
-        <div class="details__cast-heading">
-        <h2 class="details__h2 basic__h2">Cast</h2>
-        <a href="" class="details__btn showMore__btn">
-                <p class="details__p basic__p">See more</p>
-        </a>
-        </div>
-        <section class="details__cast-gallery">
-            <div class="details__cell">
-            </div>
-        </section>
-    </section>
 `;
 
       mainElement.append(detailsSection);
     });
 
   //FOREACH LOOP THROUGH THE ACTORS
+  fetch(
+    `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=97d3331e327df20d1c0faca85f646034`
+  )
+    .then((responseCast) => responseCast.json())
+    .then((movieCast) => {
+      console.log(movieCast);
 
-  //fetch();
+      const castSection = document.createElement("section");
+      castSection.classList.add("cast");
+      castSection.innerHTML = `
+        <div class="cast__heading">
+          <h2 class="cast__h2">
+            Cast
+          </h2>
+          <a href="" class="cast__btn">
+                <p class="cast__p basic__p">See more</p>
+          </a>
+        </div>
+        <section class="cast__scroll">
+
+        </section>
+      `;
+
+      mainElement.append(castSection);
+
+      movieCast.cast.forEach((castMember) => {
+        console.log(castMember);
+
+        const castCard = document.createElement("article");
+        castCard.classList.add("cast__card");
+        castCard.innerHTML = `
+        <article class="card__cards">
+          <img src="${
+            imgURL + castMember.profile_path
+          }" alt="" class="cast__img">
+          <h3 class="cast__name">${castMember.name}</h3>
+          </article>
+        `;
+        castScroll.append(castCard);
+      });
+    });
 
   //-------------------------------------------------------------------
 });

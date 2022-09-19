@@ -5,13 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const headerSection = document.createElement("section");
   headerSection.classList.add("header__section");
   headerSection.innerHTML = `
-    <h1 class="header__h1">MyMovies</h1>
+    <h1 class="header__h1 header__h1-index">MyMovies</h1>
     <div class="header__toggle toggle">
         <label class="toggle__switch">
         <input type="checkbox" class="toggle__checkbox">
         <span class="toggle__slider round"></span>
+        </label>
     </div>
-</label>
+
   `;
   header.append(headerSection);
 
@@ -49,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const showingSection = document.createElement("article");
       showingSection.classList.add("showing__card");
       showingSection.innerHTML = `
-        <article class="showing__movie">
+      <article class="showing__movie">
             <a href="/details.html?id=${
               movieOne.id
             }" class="showing__movie-link">
@@ -66,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h5 class="showing__h5 showing__h5--time basic__h5"></h5>
             </div>
             </a>
-        </article>
+            </article>
         `;
       showingFlex.append(showingSection);
     });
@@ -106,10 +107,11 @@ document.addEventListener("DOMContentLoaded", () => {
       popularSection.innerHTML = `
 
         <article class="popular__movie">
-            <img src="${
-              imgURL + movie.poster_path
-            }" alt="" class="popular__img">
+           <a href="/details.html?id=${movie.id}" class="popular__link">
+           <img src="${imgURL + movie.poster_path}" alt="" class="popular__img">
+            </a>
             <div class="popular__info">
+              <a href="/details.html?id=${movie.id}" class="popular__link">
                 <h3 class="popular__h3 basic__h3">${movie.title}</h3>
                 <h4 class="popular__h4 basic__h4 basic__h4--grey"><i class="popular__star fa-sharp fa-solid fa-star"></i> ${
                   movie.vote_average
@@ -117,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="popular__genre-box">
                 </div>
                 <h5 class="popular__h5 popular__h5--time basic__h5"></h5>
+                </a>
             </div>
         </article>
         `;
@@ -124,10 +127,13 @@ document.addEventListener("DOMContentLoaded", () => {
       popularMainGrid.append(popularSection);
 
       const genreBox = popularSection.querySelector(".popular__genre-box");
-      movie.genre_ids.forEach((genre) => {
+      movie.genre_ids.forEach((id) => {
+        console.log(id);
+        let currentGenre = genres.find((genre) => genre.id == id);
+
         const genreTag = document.createElement("a");
         genreTag.classList.add("popular__genre", "basic__a");
-        genreTag.innerText = genre;
+        genreTag.innerText = currentGenre.name;
 
         genreBox.append(genreTag);
       });
