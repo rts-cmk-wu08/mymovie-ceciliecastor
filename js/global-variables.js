@@ -13,6 +13,15 @@ mainElement.classList.add("main");
 bodySection.append(mainElement);
 
 //FOOTER
+const footerElm = document.createElement("footer");
+footerElm.classList.add("footer");
+footerElm.innerHTML = `
+  <a href="" class="footer__link"><i class="fa-solid fa-tape footer__film"></i></a>
+  <a href="" class="footer__link"><i class="fa-solid fa-ticket-simple footer__ticket"></i></a>
+  <a href="" class="footer__link"><i class="fa-solid fa-bookmark footer__bookmark"></i></a>
+`;
+
+bodySection.append(footerElm);
 
 /* ---- URL VARIBLER ---- */
 const apiKey = "api_key=97d3331e327df20d1c0faca85f646034";

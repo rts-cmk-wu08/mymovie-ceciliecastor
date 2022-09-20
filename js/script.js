@@ -128,8 +128,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const genreBox = popularSection.querySelector(".popular__genre-box");
       movie.genre_ids.forEach((id) => {
-        console.log(id);
         let currentGenre = genres.find((genre) => genre.id == id);
+        currentGenre.length == 2;
 
         const genreTag = document.createElement("a");
         genreTag.classList.add("popular__genre", "basic__a");

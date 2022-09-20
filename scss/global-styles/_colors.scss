@@ -1,7 +1,39 @@
-/* - COLORE VARIABLES - */
+/* ---- COLORE VARIABLES ---- */
 
-$primaryGreen: #177115;
-$secondaryGreen: #51dd4f;
-$lightGreen: #c8e7c7;
-$brightOrange: #ff4400;
-$backgroundBeige: #f4f0e5;
+//GLOBAL
+$clr-white: #fff;
+$clr-black: #000;
+$clr-yellow: #FFC319;
+
+$clr-dark-grey: #9C9C9C;
+$clr-light-grey: #AAA9B1;
+
+$clr-dark-blue-heading: #110E47;
+$clr-medium-blue: #88A4E8;
+$clr-light-blue: #DBE3FF;
+
+$clr-footer-grey: #BCBCCD;
+$clr-darkmode-heading: #F0EFFA; 
+
+
+
+
+/* ---- MIXINS ---- */
+
+@mixin dark-mode{
+        background-color: $clr-black;
+        color: $clr-darkmode-heading;
+}
+@mixin light-mode{
+        background-color: $clr-white;
+        color: $clr-dark-blue-heading;
+}
+// @media (prefers-color-scheme: dark) {
+//     body{
+//         @include dark-mode; 
+//     }
+// }
+
+
+
+

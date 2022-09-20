@@ -1,28 +1,19 @@
 @use '../global-styles/' as gs; 
 
-// .body{
-//     max-width: 375px;
-//     margin: 3rem auto;
-//     display: grid;
-//     grid-template-columns: 1fr;
-// }
-
 /* ---- TOGGLE BUTTON ---- */
 .toggle{
-    position: relative;
-    display: inline-block;
-    width: 38px;
-    height: 21px;
-
+    &__switch{
+        position: relative;
+        display: inline-block;
+        width: 38px;
+        height: 21px;
+    }
     &__checkbox{
         opacity: 0;
         width: 0;
         height: 0;
         &:checked + .toggle__slider{
             background-color: #2196F3;
-        }
-        &:focus + .toggle__slider{
-            box-shadow: 0 0 1px #2196F3;
         }
         &:checked + .toggle__slider:before{
             -webkit-transform: translateX(18px);
@@ -41,12 +32,6 @@
         -webkit-transition: .4s;
         transition: .4s;
         border-radius: 34px;
-        &:checked{
-            background-color: #000;
-        }
-        &:focus{
-            box-shadow: 0 0 1px #2196F3;
-        }
         &::before{
             position: absolute;
             content: "";
@@ -61,12 +46,18 @@
             -ms-transform: translateX(18px);
             transform: translateX(18px);
         }
+        &:checked{
+            background-color: #000;
+        }
+        &:focus{
+            box-shadow: 0 0 1px #2196F3;
+        }
     }
     
 }
 .body{
     max-width: 375px;
-    margin: 0 auto;
+    margin: gs.$center-margin;
 }
 
 /* ---- MAIN ---- */
@@ -105,7 +96,7 @@
     &__title{
          display: flex;
          justify-content: space-between;
-         margin-bottom: 1rem;
+         margin-bottom: gs.$base-margin;
      }
     &__img{
         //width: 143px;
@@ -148,7 +139,7 @@
     &__card{
         display: grid;
         grid-template-columns: 1fr;
-        margin-bottom: 1rem;
+        margin-bottom: gs.$base-margin;
     }
     &__movie{
         display: grid;
@@ -160,7 +151,7 @@
     &__title{
         display: flex;
         justify-content: space-between;
-        margin-bottom: 1rem;
+        margin-bottom: gs.$base-margin;
     }
     &__img{
         width: 85px;
@@ -181,6 +172,9 @@
          color: #AAA9B1;
          font-size: 10px;
     }
+    // &__genre-box{
+    //     display: grid;
+    // }
     &__genre{
         background-color: #DBE3FF;
         padding: 4px 12px;
@@ -256,15 +250,15 @@
         font-size: 20px;
         text-align: left;
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin-bottom: gs.$base-margin;
     }
 
     &__section{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        margin-bottom: 1.5rem;
+        margin-bottom: gs.$base-margin;
     }&__description{
-        margin-bottom: 1.5rem;
+        margin-bottom: gs.$base-margin;
     }
     &__h2{
         text-align: left;
@@ -302,7 +296,34 @@
         height: auto;
         border-radius: 8px;
     }
-    &__card{
+    &__heading{
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        padding: 0 1.5rem;
+    }
+    &__h2{
+        grid-area: 1 / 1;
+        text-align: left;
+    }
+    &__btn{
+        grid-area: 1 / 1;
+        justify-self: end;
+        border: 1px solid #AAA9B1;
+        padding: 4px 8px;
+        border-radius: 100px;
+    }
+}
 
+/* ---- FOOTER ---- */
+.footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    background-color: gs.$clr-white;
+    height: 60px;
+    & i{
+        font-size: 1.5rem;
+        color: gs.$clr-dark-blue-heading;
     }
 }
