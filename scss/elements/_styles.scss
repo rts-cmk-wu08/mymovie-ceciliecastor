@@ -1,67 +1,65 @@
-@use '../global-styles/' as gs; 
+//@use '../global-styles/' as gs; 
+@import '../global-styles/';
 
-/* ---- TOGGLE BUTTON ---- */
+
+
+/* --- DARKMODE TOGGLE ---- */
 .toggle{
-    &__switch{
-        position: relative;
-        display: inline-block;
-        width: 38px;
-        height: 21px;
-    }
+    position: relative;
+    justify-self: end;
+    //input
     &__checkbox{
         opacity: 0;
-        width: 0;
-        height: 0;
-        &:checked + .toggle__slider{
-            background-color: #2196F3;
-        }
-        &:checked + .toggle__slider:before{
-            -webkit-transform: translateX(18px);
-            -ms-transform: translateX(18px);
-            transform: translateX(18px);
-        }
-    }
-    &__slider{
+        width: 38px;
+        height: 21px;
         position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #AAA9B1;
+        z-index: 100;
+        &:checked + label{
+            background-color: $clr-white;
+                &::after{
+                    left: 19px;
+                    background-color: $clr-black;
+                }
+            }
+        }
+    //label
+    &__switch {
+        position: absolute;
+        width: 38px;
+        height: 21px;
+        background-color: $clr-light-grey;
+        border-radius: 50px;
         -webkit-transition: .4s;
         transition: .4s;
-        border-radius: 34px;
         &::before{
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            background-color: white;
             -webkit-transition: .4s;
             transition: .4s;
+        }
+        &::after{
+            content: '';
+            width: 17px;
+            height: 17px;
+            background-color: $clr-white;
+            position: absolute;
+            top: 2px;
+            left: 2px;
             border-radius: 50%;
-            margin: 1.5px;
-            -webkit-transform: translateX(18px);
-            -ms-transform: translateX(18px);
-            transform: translateX(18px);
-        }
-        &:checked{
-            background-color: #000;
-        }
-        &:focus{
-            box-shadow: 0 0 1px #2196F3;
         }
     }
-    
 }
+
 .body{
     max-width: 375px;
-    margin: gs.$center-margin;
+    margin: $center-margin;
+    background-color: $clr-white;
+    @include themed(){
+         background-color: t(bg);
+    }
 }
 
 /* ---- MAIN ---- */
 .main{
+    //grid-area: 1 / 1;
     display: grid;
     width: 100%;
     overflow: hidden;
@@ -76,9 +74,11 @@
     height: 60px;
     display: grid;
     grid-template-columns: 1fr;
+    align-items: center;
     &__section{
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+  
     }
 }
 
@@ -94,9 +94,11 @@
         padding-right: 1.5rem;
     }
     &__title{
-         display: flex;
-         justify-content: space-between;
-         margin-bottom: gs.$base-margin;
+        max-width: 375px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: $base-margin;
+        padding-right: 1.5rem;
      }
     &__img{
         //width: 143px;
@@ -107,11 +109,6 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-     }
-     &__btn{
-        border: 1px solid #AAA9B1;
-        padding: 4px 8px;
-        border-radius: 100px;
      }
      &__h3{
         max-width: 15ch;
@@ -139,7 +136,7 @@
     &__card{
         display: grid;
         grid-template-columns: 1fr;
-        margin-bottom: gs.$base-margin;
+        margin-bottom: $base-margin;
     }
     &__movie{
         display: grid;
@@ -151,7 +148,7 @@
     &__title{
         display: flex;
         justify-content: space-between;
-        margin-bottom: gs.$base-margin;
+        margin-bottom: $base-margin;
     }
     &__img{
         width: 85px;
@@ -163,18 +160,6 @@
          flex-direction: column;
          justify-content: space-between;
      }
-     &__btn{
-         border: 1px solid #AAA9B1;
-         padding: 4px 8px;
-         border-radius: 100px;
-     }
-     &__p{
-         color: #AAA9B1;
-         font-size: 10px;
-    }
-    // &__genre-box{
-    //     display: grid;
-    // }
     &__genre{
         background-color: #DBE3FF;
         padding: 4px 12px;
@@ -183,6 +168,7 @@
         color: #88A4E8;
         font-size: 8px;
     }
+
     &__h4{
         color: #9C9C9C;
         font-weight: 400;
@@ -201,22 +187,8 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 300px auto;
-    &__img{
-        grid-area: 1 / 1;
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-    &__play{
-        grid-area: 1 / 1;
-        place-self: center;
-        color: white;
-        margin-bottom: 3rem ; 
-    }
-    &__p{
-        grid-area: 1 / 1;
-        place-self: center;
-        color: white;
+    &__iframe{
+        max-width: 375px;
     }
 }
 
@@ -230,12 +202,12 @@
     grid-area: 1 / 1 ;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 300px auto;
+    //grid-template-rows: 300px auto;
     &__container{
         grid-area: 1 / 1;
         display: flex;
         justify-content: space-between;
-        padding: 2rem 1.5rem;
+        padding: 2rem 0;
     }
 }
 
@@ -245,20 +217,20 @@
     padding: 2rem 1.5rem;
     grid-area: 5 / 1 / 17 / 2;
     &__h1{
-        font-family: gs.$mainFont;
+        font-family: $mainFont;
         max-width: 17ch;
         font-size: 20px;
         text-align: left;
         font-weight: 700;
-        margin-bottom: gs.$base-margin;
+        margin-bottom: $base-margin;
     }
 
     &__section{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        margin-bottom: gs.$base-margin;
+        margin-bottom: $base-margin;
     }&__description{
-        margin-bottom: gs.$base-margin;
+        margin-bottom: $base-margin;
     }
     &__h2{
         text-align: left;
@@ -271,7 +243,7 @@
         font-weight: 400;
     }
     &__imdb{
-        margin-bottom: 0.5rem;
+        margin-bottom: $base-margin;
     }
     &__cast{
         display: grid;
@@ -281,26 +253,34 @@
         display: flex;
         justify-content: space-between;
     }
+    &__genres{
+        margin-bottom: $base-margin;
+    }
 }
 
 .cast{
-    &__scroll{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    //     overflow: hidden;
+    padding: 0 1.5rem;
+    gap: 13px;
+    &__cards{
         display: grid;
-        grid-auto-flow: column;
-        grid-auto-columns: 72px;
-        gap: 1rem;
-        overflow-x: auto;
-        padding-right: 1.5rem;
+        grid-template-rows: 72px auto;
     }
     &__img{
-        height: auto;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
         border-radius: 8px;
+        overflow: hidden;
     }
     &__heading{
+        grid-area: 1 / 1 / 1 / 5;
         display: grid;
         grid-template-columns: 1fr;
         align-items: center;
-        padding: 0 1.5rem;
+    //     padding: 0 1.5rem;
     }
     &__h2{
         grid-area: 1 / 1;
@@ -309,9 +289,10 @@
     &__btn{
         grid-area: 1 / 1;
         justify-self: end;
-        border: 1px solid #AAA9B1;
-        padding: 4px 8px;
-        border-radius: 100px;
+    }
+    &__name{
+        font-size: 12px;
+        font-weight: 400;
     }
 }
 
@@ -320,10 +301,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
-    background-color: gs.$clr-white;
+    background-color: $clr-white;
     height: 60px;
     & i{
         font-size: 1.5rem;
-        color: gs.$clr-dark-blue-heading;
+        color: $clr-dark-blue-heading;
     }
 }

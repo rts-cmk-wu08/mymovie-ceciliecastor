@@ -20,20 +20,63 @@ $clr-darkmode-heading: #F0EFFA;
 
 /* ---- MIXINS ---- */
 
-@mixin dark-mode{
-        background-color: $clr-black;
-        color: $clr-darkmode-heading;
-}
-@mixin light-mode{
-        background-color: $clr-white;
-        color: $clr-dark-blue-heading;
-}
-// @media (prefers-color-scheme: dark) {
-//     body{
-//         @include dark-mode; 
-//     }
+// @mixin dark-mode{
+//         background-color: $clr-black;
+//         h1,
+//         .details__p--dark{
+//                 color: $clr-white;
+//         }
+//         h2,
+//         h3{
+//                 color: $clr-light-blue;
+//         }
+// }
+// @mixin light-mode{
+//         background-color: $clr-white;
+//         h1,
+//         h2{
+//                 color: $clr-dark-blue-heading;
+//         }
+//         h3,
+//         .details__p--dark{
+//                 color: $clr-black;
+//         } 
 // }
 
+$themes: (
+        default: (
+                h1-text: $clr-dark-blue-heading,
+                h2-text: $clr-dark-blue-heading,
+                h3-text: $clr-black,
+                p--bold:  $clr-dark-blue-heading,
+                bg: $clr-white,
+        ),
+        dark: (
+                h1-text: $clr-white,
+                h2-text: $clr-light-blue,
+                h3-text: $clr-light-blue,
+                p--bold: $clr-white,
+                bg: $clr-black,
+        )
+);
+
+@mixin themed() {
+        @each $theme, $map in $themes {
+                .theme--#{$theme} & {
+                        $theme-map: () !global; 
+                        @each $key, $submap in $map {
+                                $value: map-get(map-get($themes, $theme), '#{$key}');
+                                $theme-map: map-merge($theme-map, ($key: $value)) !global; 
+                        }  
+                        @content; 
+                        $theme-map: null !global; 
+                }
+        }
+}
+
+@function t($key){
+        @return map-get($theme-map, $key); 
+}
 
 
 

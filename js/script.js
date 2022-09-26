@@ -5,12 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const headerSection = document.createElement("section");
   headerSection.classList.add("header__section");
   headerSection.innerHTML = `
-    <h1 class="header__h1 header__h1-index">MyMovies</h1>
+    <a href=""><i class="fa-solid fa-bars header__menu"></i></a>
+    <h2 class="header__h2 header__h2-index">MyMovies</h2>
     <div class="header__toggle toggle">
-        <label class="toggle__switch">
-        <input type="checkbox" class="toggle__checkbox">
-        <span class="toggle__slider round"></span>
-        </label>
+        <input type="checkbox" class="toggle__checkbox" name="checkbox">
+        <label for="checkbox" class="toggle__switch"></label>
     </div>
 
   `;
@@ -34,8 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
     nowShowingGrid.innerHTML = `
         <div class="showing__title">
             <h2 class="showing__h2 basic__h2">Now Showing</h2>
-            <a href="" class="showing__btn">
-                <p class="showing__p basic__p">See more</p>
+            <a href="" class="showing__btn see-more">
+                <p class="showing__p see-more__p">See more</p>
             </a>
         </div>
     `;
@@ -93,8 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
     popularMainGrid.innerHTML = `
         <div class="popular__title">
             <h2 class="popular__h2 basic__h2">Popular</h2>
-            <a href="" class="popular__btn">
-                <p class="popular__p basic__p">See more</p>
+            <a href="" class="popular__btn see-more">
+                <p class="popular__p see-more__p">See more</p>
             </a>
         </div>
     `;
@@ -127,18 +126,30 @@ document.addEventListener("DOMContentLoaded", () => {
       popularMainGrid.append(popularSection);
 
       const genreBox = popularSection.querySelector(".popular__genre-box");
-      movie.genre_ids.forEach((id) => {
+      movie.genre_ids.forEach((id, index) => {
+        console.log(id);
         let currentGenre = genres.find((genre) => genre.id == id);
-        currentGenre.length == 2;
 
         const genreTag = document.createElement("a");
         genreTag.classList.add("popular__genre", "basic__a");
         genreTag.innerText = currentGenre.name;
-
-        genreBox.append(genreTag);
+        if (index < 3) {
+          genreBox.append(genreTag);
+        }
       });
     });
   }
+
+  //FOOTER
+  const footerElm = document.createElement("footer");
+  footerElm.classList.add("footer");
+  footerElm.innerHTML = `
+  <a href="" class="footer__link"><i class="fa-solid fa-tape footer__film"></i></a>
+  <a href="" class="footer__link"><i class="fa-solid fa-ticket-simple footer__ticket"></i></a>
+  <a href="" class="footer__link"><i class="fa-solid fa-bookmark footer__bookmark"></i></a>
+`;
+
+  bodySection.append(footerElm);
 
   //-------------------------------------------
 });
