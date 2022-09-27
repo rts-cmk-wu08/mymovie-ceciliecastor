@@ -1,0 +1,76 @@
+
+@use 'colors' as c; 
+
+/* -- MERRIWEATHER & MULISH ---- */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+$mainFont: 'Mulish', sans-serif;
+$headingFont: 'Merriweather', serif;
+
+h1, 
+h2{
+    font-family: $headingFont;
+    text-align: center;
+    text-transform: capitalize;
+    letter-spacing: 2%;
+}
+
+h1{
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center;
+    @include c.themed(){
+        color: c.t(h1-text);
+    }
+}
+
+h2{
+    font-size: 16px;
+    font-weight: 900;
+    @include c.themed(){
+        color: c.t(h2-text);
+    }
+}
+h3{
+
+    font-weight: 700;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-family: $mainFont;
+    letter-spacing: 2%;
+    margin-bottom: 0.5rem;
+    @include c.themed(){
+        color: c.t(h3-text);
+   }
+}
+h4{
+    margin-bottom: 0.5rem;
+}
+
+h4, 
+h5, 
+h6, 
+p, 
+a{
+    font-family: $mainFont;
+    color: #000;
+}
+
+a,
+a:visited,
+a:active{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.8rem;
+    &:hover{
+        color: #000;
+    }
+}
+
+ul{
+    list-style: none;
+}
+

@@ -1,0 +1,4 @@
+/* - the forwadrs will automatically look for the _index.scss in each folder - */
+/* this one is specifically look for the index.scss file in the global folder*/
+@forward 'elements';
+@forward 'global-styles';

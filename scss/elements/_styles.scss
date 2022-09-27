@@ -1,0 +1,306 @@
+//@use '../global-styles/' as gs; 
+@import '../global-styles/';
+
+
+
+
+.body{
+    max-width: 375px;
+    margin: $center-margin;
+}
+
+.theme--dark{
+    background-color: #000;
+}
+
+/* ---- MAIN ---- */
+.main{
+
+    display: grid;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ---- HEADER ---- */
+.header{
+    padding: 1.5rem 1.5rem;
+    position: sticky;
+    top: 0;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    &__navigation{
+        align-self: center;
+        @include themed(){
+            color:  t(p--bold);
+        }
+    }
+}
+
+/* --- DARKMODE TOGGLE ---- */
+.toggle{
+    position: relative;
+    justify-self: end;
+    margin-right: 2.4rem;
+    //input
+    &__checkbox{
+        opacity: 0;
+        width: 38px;
+        height: 21px;
+        position: absolute;
+        z-index: 100;
+        &:checked + label{
+            background-color: $clr-white;
+                &::after{
+                    left: 19px;
+                    background-color: $clr-black;
+                }
+            }
+        }
+    //label
+    &__switch {
+        position: absolute;
+        width: 38px;
+        height: 21px;
+        background-color: $clr-light-grey;
+        border-radius: 50px;
+        -webkit-transition: .4s;
+        transition: .4s;
+        &::before{
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        &::after{
+            content: '';
+            width: 17px;
+            height: 17px;
+            background-color: $clr-white;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            border-radius: 50%;
+        }
+    }
+}
+
+
+/* ---- NOW SHOWING ---- */
+.showing{
+    padding: 20px 0px 2rem 1.5rem;
+    max-width: 375px;
+    &__flex{
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 45%;
+        //grid-auto-columns: 143px;
+        gap: 1rem;
+        overflow-x: auto;
+        padding-right: 1.5rem;
+    }
+    &__title{
+        max-width: 375px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: $base-margin;
+        padding-right: 1.5rem;
+     }
+    &__img{
+        height: auto;
+        border-radius: 8px;
+    }
+    &__info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+     }
+     &__h3{
+        max-width: 15ch;
+     }
+    &__h4{
+        color: #9C9C9C;
+        font-weight: 400;
+        font-size: 12px;
+    }
+     &__star{
+        color: #FFC319;
+     }
+}
+
+/* ---- POPULAR MOVIE SECTION ---- */
+.popular{
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+    padding: 0 1.5rem;
+    max-width: 375px;
+    &__link{
+        cursor: pointer;
+    }
+    &__card{
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-bottom: $base-margin;
+    }
+    &__movie{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+      }
+    &__h3{
+        max-width: 15ch;
+    }
+    &__title{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: $base-margin;
+    }
+    &__img{
+        width: 85px;
+        height: 120px;
+        border-radius: 8px;
+    }
+     &__info{
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+     }
+    &__h4{
+        color: #9C9C9C;
+        font-weight: 400;
+        font-size: 12px;
+    }
+    &__star{
+        color: #FFC319;
+    }
+}
+
+
+/* ---------- DETAILSPAGE ---------- */
+/* ---- HERO SECTION ---- */
+.hero{
+    grid-area: 1 / 1 / 6 / 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px auto;
+    &__iframe{
+        max-width: 375px;
+        border: none;
+    }
+}
+
+/* ---- DETAILS PAGE ---- */
+.body--details{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.header-details{
+    grid-area: 1 / 1 ;
+    display: grid;
+    grid-template-columns: 1fr;
+    //grid-template-rows: 300px auto;
+    &__container{
+        grid-area: 1 / 1;
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem 0;
+    }
+}
+
+.details{
+    background-color: #fff;
+    // @include themed(){
+    //     background-color: t(footer-bg);
+    // }
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    grid-area: 5 / 1 / 17 / 2;
+    &__h1{
+        font-family: $mainFont;
+        max-width: 17ch;
+        font-size: 20px;
+        text-align: left;
+        font-weight: 700;
+        margin-bottom: $base-margin;
+    }
+
+    &__section{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-bottom: $base-margin;
+    }&__description{
+        margin-bottom: $base-margin;
+    }
+    &__h2{
+        text-align: left;
+        margin-bottom: 0.5rem;
+    }
+    &__p--light{
+        color: #9C9C9C;
+        font-size: 12px;
+        line-height: 22px;
+        font-weight: 400;
+    }
+    &__cast{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    &__cast-heading{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.cast{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 0 1.5rem;
+    gap: 13px;
+    &__card{
+        display: grid;
+        grid-template-rows: 72px auto;
+    }
+    &__img{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    &__heading{
+        grid-area: 1 / 1 / 1 / 5;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+    //     padding: 0 1.5rem;
+    }
+    &__h2{
+        grid-area: 1 / 1;
+        text-align: left;
+    }
+    &__btn{
+        grid-area: 1 / 1;
+        justify-self: end;
+    }
+    &__name{
+        font-size: 12px;
+        font-weight: 400;
+    }
+}
+
+/* ---- FOOTER ---- */
+.footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    background-color: $clr-white;
+    height: 60px;
+    @include themed(){
+        background-color: t(footer-bg);
+    }
+    & i{
+        font-size: 1.5rem;
+        @include themed(){
+            color: t(footer-icon);
+        }
+    }
+}

@@ -1,0 +1,66 @@
+/* ---- COLORE VARIABLES ---- */
+
+//GLOBAL
+$clr-white: #fff;
+$clr-black: #000;
+$clr-yellow: #FFC319;
+
+$clr-dark-grey: #9C9C9C;
+$clr-light-grey: #AAA9B1;
+
+$clr-dark-blue-heading: #110E47;
+$clr-medium-blue: #88A4E8;
+$clr-light-blue: #DBE3FF;
+
+$clr-footer-grey: #BCBCCD;
+$clr-darkmode-heading: #F0EFFA; 
+
+
+
+
+/* ---- MIXINS ---- */
+//MODE VARIABLES
+$themes: (
+        default: (
+                h1-text: $clr-dark-blue-heading,
+                h2-text: $clr-dark-blue-heading,
+                h3-text: $clr-black,
+                p--bold:  $clr-dark-blue-heading,
+                bg: $clr-white,
+                footer-bg: $clr-white,
+                footer-icon: $clr-dark-blue-heading,
+        ),
+        dark: (
+                h1-text: $clr-white,
+                h2-text: $clr-light-blue,
+                h3-text: $clr-light-blue,
+                p--bold: $clr-white,
+                bg: $clr-black,
+                footer-bg: $clr-black, 
+                footer-icon: $clr-white,
+        )
+);
+
+//MIXINS BASED ON MODE VARIABLES
+@mixin themed() {
+        //run trough each object i $themes
+        @each $theme, $map in $themes {
+                //create classname 
+                .theme--#{$theme} & {
+                        $theme-map: () !global; 
+                        @each $key, $submap in $map {
+                                $value: map-get(map-get($themes, $theme), '#{$key}');
+                                $theme-map: map-merge($theme-map, ($key: $value)) !global; 
+                        }  
+                       @content; 
+                        $theme-map: null !global; 
+                }
+        }
+}
+
+@function t($key){
+        @return map-get($theme-map, $key); 
+}
+
+
+
