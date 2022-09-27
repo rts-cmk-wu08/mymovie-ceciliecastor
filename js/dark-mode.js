@@ -1,4 +1,10 @@
-// const toggle = document.querySelector(".toggle_checkbox");
+// const toggle = document.querySelector(".toggle__checkbox");
+// toggle.addEventListener("click", modeSwitch);
+// console.log(toggle);
+
+// function modeSwitch() {
+//   if (body )
+// }
 // const bodyEl = document.querySelector(".body");
 
 // toggle.addEventListener("click", () => {

@@ -2,9 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //-------------------------------------------
 
   /* ---- HEADER ---- */
-  const headerSection = document.createElement("section");
-  headerSection.classList.add("header__section");
-  headerSection.innerHTML = `
+  header.innerHTML = `
     <a href=""><i class="fa-solid fa-bars header__menu"></i></a>
     <h2 class="header__h2 header__h2-index">MyMovies</h2>
     <div class="header__toggle toggle">
@@ -13,7 +11,37 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 
   `;
-  header.append(headerSection);
+
+  /* ---- TOGGLE BUTTON ---- */
+
+  let darkMode = localStorage.getItem("darkMode");
+  const darkModeToggle = document.querySelector(".toggle");
+  // console.log(darkMode);
+
+  const enableDarkMode = () => {
+    document.body.classList.add("theme--dark");
+    localStorage.setItem("darkMode", "enabled");
+  };
+
+  const disableDarkMode = () => {
+    document.body.classList.remove("theme--dark");
+    localStorage.setItem("darkMode", null);
+  };
+
+  if (darkMode === "enabled") {
+    enableDarkMode();
+  }
+
+  darkModeToggle.addEventListener("click", () => {
+    //console.log("test");
+    darkMode = localStorage.getItem("darkMode");
+    if (darkMode !== "enabled") {
+      enableDarkMode();
+      //console.log(darkMode);
+    } else {
+      disableDarkMode();
+    }
+  });
 
   /* ---- NOW SHOWING MOVIES ---- */
   moviesShowing(nowShowing);
@@ -23,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((resOne) => resOne.json())
       .then((dataOne) => {
         showMoviesShowing(dataOne.results);
-        console.log(dataOne.results);
+        //console.log(dataOne.results);
       });
   }
 
@@ -127,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const genreBox = popularSection.querySelector(".popular__genre-box");
       movie.genre_ids.forEach((id, index) => {
-        console.log(id);
+        //console.log(id);
         let currentGenre = genres.find((genre) => genre.id == id);
 
         const genreTag = document.createElement("a");

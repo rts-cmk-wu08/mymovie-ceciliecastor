@@ -9,7 +9,6 @@
 h1,
 h2 {
   font-family: "Merriweather", serif;
-  color: #110E47;
   text-align: center;
   text-transform: capitalize;
   letter-spacing: 2%;
@@ -21,9 +20,25 @@ h1 {
   text-align: center;
 }
 
+.theme--default h1 {
+  color: #110E47;
+}
+
+.theme--dark h1 {
+  color: #fff;
+}
+
 h2 {
   font-size: 16px;
   font-weight: 900;
+}
+
+.theme--default h2 {
+  color: #110E47;
+}
+
+.theme--dark h2 {
+  color: #DBE3FF;
 }
 
 h3 {
@@ -32,6 +47,19 @@ h3 {
   font-size: 14px;
   font-family: "Mulish", sans-serif;
   letter-spacing: 2%;
+  margin-bottom: 0.5rem;
+}
+
+.theme--default h3 {
+  color: #000;
+}
+
+.theme--dark h3 {
+  color: #DBE3FF;
+}
+
+h4 {
+  margin-bottom: 0.5rem;
 }
 
 h4,
@@ -61,18 +89,6 @@ a:active:hover {
 
 ul {
   list-style: none;
-}
-
-/* -- GRADIENT TEXT -- */
-.about {
-  height: 100vh;
-}
-
-.about__text {
-  font-size: 2em;
-  color: #000;
-  text-align: center;
-  line-height: 100vh;
 }
 
 html {
@@ -105,10 +121,38 @@ video {
   font-size: 10px;
 }
 
+.body {
+  max-width: 375px;
+  margin: 0 auto;
+}
+
+.theme--dark {
+  background-color: #000;
+}
+
+/* ---- MAIN ---- */
+.main {
+  display: grid;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ---- HEADER ---- */
+.header {
+  padding: 0 1.5rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 /* --- DARKMODE TOGGLE ---- */
 .toggle {
   position: relative;
   justify-self: end;
+  margin-right: 2.4rem;
 }
 .toggle__checkbox {
   opacity: 0;
@@ -146,50 +190,15 @@ video {
   border-radius: 50%;
 }
 
-.body {
-  max-width: 375px;
-  margin: 0 auto;
-  background-color: #fff;
-}
-.theme--default .body {
-  background-color: #fff;
-}
-.theme--dark .body {
-  background-color: #000;
-}
-
-/* ---- MAIN ---- */
-.main {
-  display: grid;
-  width: 100%;
-  overflow: hidden;
-}
-
-/* ---- HEADER ---- */
-.header {
-  padding: 0 1.5rem;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  grid-area: 1/1;
-  height: 60px;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-}
-.header__section {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
 /* ---- NOW SHOWING ---- */
 .showing {
-  padding-left: 1.5rem;
+  padding: 60px 0px 2rem 1.5rem;
+  max-width: 375px;
 }
 .showing__flex {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 11%;
+  grid-auto-columns: 45%;
   gap: 1rem;
   overflow-x: auto;
   padding-right: 1.5rem;
@@ -360,7 +369,7 @@ video {
   padding: 0 1.5rem;
   gap: 13px;
 }
-.cast__cards {
+.cast__card {
   display: grid;
   grid-template-rows: 72px auto;
 }
@@ -399,9 +408,20 @@ video {
   background-color: #fff;
   height: 60px;
 }
+.theme--default .footer {
+  background-color: #fff;
+}
+.theme--dark .footer {
+  background-color: #000;
+}
 .footer i {
   font-size: 1.5rem;
+}
+.theme--default .footer i {
   color: #110E47;
+}
+.theme--dark .footer i {
+  color: #fff;
 }
 
 /* --- A FUNCTION THAT DIVIDE PIXELS INTO REM + AN ERROR MESSAGE --- */ /* ---- SASS MAP FOR MOBILE FIRST ---- */
@@ -411,7 +431,6 @@ video {
 h1,
 h2 {
   font-family: "Merriweather", serif;
-  color: #110E47;
   text-align: center;
   text-transform: capitalize;
   letter-spacing: 2%;
@@ -422,10 +441,22 @@ h1 {
   font-weight: 900;
   text-align: center;
 }
+.theme--default h1 {
+  color: #110E47;
+}
+.theme--dark h1 {
+  color: #fff;
+}
 
 h2 {
   font-size: 16px;
   font-weight: 900;
+}
+.theme--default h2 {
+  color: #110E47;
+}
+.theme--dark h2 {
+  color: #DBE3FF;
 }
 
 h3 {
@@ -434,6 +465,17 @@ h3 {
   font-size: 14px;
   font-family: "Mulish", sans-serif;
   letter-spacing: 2%;
+  margin-bottom: 0.5rem;
+}
+.theme--default h3 {
+  color: #000;
+}
+.theme--dark h3 {
+  color: #DBE3FF;
+}
+
+h4 {
+  margin-bottom: 0.5rem;
 }
 
 h4,
@@ -462,17 +504,6 @@ a:active:hover {
 
 ul {
   list-style: none;
-}
-
-/* -- GRADIENT TEXT -- */
-.about {
-  height: 100vh;
-}
-.about__text {
-  font-size: 2em;
-  color: #000;
-  text-align: center;
-  line-height: 100vh;
 }
 
 html {

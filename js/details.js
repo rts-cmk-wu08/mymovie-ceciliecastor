@@ -39,10 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
   )
     .then((responseDetails) => responseDetails.json())
     .then((movieDetails) => {
-      console.log(movieDetails);
-      const headerSection = document.createElement("section");
-      headerSection.classList.add("header__section");
-      headerSection.innerHTML = `
+      //console.log(movieDetails);
+      header.innerHTML = `
           <a href="/index.html" class="header__arrow"><i class="fa-solid fa-arrow-left"></i></a>
           <h2 class="header__h2">MyMovies</h2>
           <div class="header__toggle toggle">
@@ -50,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <label for="checkbox" class="toggle__switch"></label>
           </div>
         `;
-      header.append(headerSection);
 
       /* ---- DETAILS PAGE ---- */
 
@@ -144,17 +141,13 @@ document.addEventListener("DOMContentLoaded", () => {
       mainElement.append(castSection);
 
       movieCast.cast.forEach((castMember, index) => {
-        console.log(castMember);
-
         const castCard = document.createElement("article");
         castCard.classList.add("cast__card");
         castCard.innerHTML = `
-        <article class="cast__cards">
           <img src="${
             imgURL + castMember.profile_path
           }" alt="" class="cast__img">
           <h3 class="cast__name">${castMember.name}</h3>
-          </article>
         `;
         if (index < 4) {
           castSection.append(castCard);

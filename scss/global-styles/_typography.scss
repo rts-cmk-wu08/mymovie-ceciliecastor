@@ -11,7 +11,6 @@ $headingFont: 'Merriweather', serif;
 h1, 
 h2{
     font-family: $headingFont;
-    color: #110E47;
     text-align: center;
     text-transform: capitalize;
     letter-spacing: 2%;
@@ -23,6 +22,9 @@ h1{
     font-size: 16px;
     font-weight: 900;
     text-align: center;
+    @include c.themed(){
+        color: c.t(h1-text);
+    }
 }
 
 h2{
@@ -30,7 +32,9 @@ h2{
     //font-size: clamp(1.8rem, 4.5vw, 4.5rem);
     font-size: 16px;
     font-weight: 900;
-
+    @include c.themed(){
+        color: c.t(h2-text);
+    }
 }
 h3{
     //font-size: clamp(f.rem(20), f.rem(35) + 2vw, f.rem(45));
@@ -40,6 +44,13 @@ h3{
     font-size: 14px;
     font-family: $mainFont;
     letter-spacing: 2%;
+    margin-bottom: 0.5rem;
+    @include c.themed(){
+        color: c.t(h3-text);
+   }
+}
+h4{
+    margin-bottom: 0.5rem;
 }
 
 h4, 
@@ -68,22 +79,3 @@ ul{
     list-style: none;
 }
 
-/* -- GRADIENT TEXT -- */
-
-@mixin gradientTxt {
-    max-width: 24ch;
-    background: linear-gradient(c.$primaryGreen, c.$backgroundBeige);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 1px #000;
-}
-.about{
-    height: 100vh;
-    &__text{
-        font-size: 2em;
-        color: #000;
-        text-align: center;
-        line-height: 100vh;
-    }
-}
