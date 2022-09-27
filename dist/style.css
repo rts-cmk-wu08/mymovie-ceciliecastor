@@ -2,8 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 /* -- MERRIWEATHER & MULISH ---- */
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-/* --- A FUNCTION THAT DIVIDE PIXELS INTO REM + AN ERROR MESSAGE --- */ /* ---- SASS MAP FOR MOBILE FIRST ---- */
-/* ---- SASS MAP FOR DESKTOP FIRST - EMERGENCY ONLY ---- */
 /* ---- COLORE VARIABLES ---- */
 /* ---- MIXINS ---- */
 h1,
@@ -78,7 +76,7 @@ a:active {
   text-transform: uppercase;
   color: #000;
   font-weight: 700;
-  font-size: clamp(0.5rem, 0.75rem, 1rem);
+  font-size: 0.8rem;
 }
 
 a:hover,
@@ -121,6 +119,22 @@ video {
   font-size: 10px;
 }
 
+/* ---- GENRE TAGS ---- */
+.genre-box {
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.genre-tag {
+  background-color: #DBE3FF;
+  padding: 4px 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  color: #88A4E8;
+  font-size: 8px;
+}
+
 .body {
   max-width: 375px;
   margin: 0 auto;
@@ -139,13 +153,22 @@ video {
 
 /* ---- HEADER ---- */
 .header {
-  padding: 0 1.5rem;
+  padding: 1.5rem 1.5rem;
   position: -webkit-sticky;
   position: sticky;
-  top: 20px;
+  top: 0;
   height: 60px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
+.header__navigation {
+  align-self: center;
+}
+.theme--default .header__navigation {
+  color: #110E47;
+}
+.theme--dark .header__navigation {
+  color: #fff;
 }
 
 /* --- DARKMODE TOGGLE ---- */
@@ -192,7 +215,7 @@ video {
 
 /* ---- NOW SHOWING ---- */
 .showing {
-  padding: 60px 0px 2rem 1.5rem;
+  padding: 20px 0px 2rem 1.5rem;
   max-width: 375px;
 }
 .showing__flex {
@@ -269,14 +292,6 @@ video {
   flex-direction: column;
   justify-content: space-between;
 }
-.popular__genre {
-  background-color: #DBE3FF;
-  padding: 4px 12px;
-  border-radius: 100px;
-  cursor: pointer;
-  color: #88A4E8;
-  font-size: 8px;
-}
 .popular__h4 {
   color: #9C9C9C;
   font-weight: 400;
@@ -296,6 +311,7 @@ video {
 }
 .hero__iframe {
   max-width: 375px;
+  border: none;
 }
 
 /* ---- DETAILS PAGE ---- */
@@ -317,7 +333,7 @@ video {
 }
 
 .details {
-  background-color: white;
+  background-color: #fff;
   border-radius: 10px;
   padding: 2rem 1.5rem;
   grid-area: 5/1/17/2;
@@ -348,9 +364,6 @@ video {
   line-height: 22px;
   font-weight: 400;
 }
-.details__imdb {
-  margin-bottom: 1.5rem;
-}
 .details__cast {
   display: grid;
   grid-template-columns: 1fr;
@@ -358,9 +371,6 @@ video {
 .details__cast-heading {
   display: flex;
   justify-content: space-between;
-}
-.details__genres {
-  margin-bottom: 1.5rem;
 }
 
 .cast {
@@ -424,8 +434,6 @@ video {
   color: #fff;
 }
 
-/* --- A FUNCTION THAT DIVIDE PIXELS INTO REM + AN ERROR MESSAGE --- */ /* ---- SASS MAP FOR MOBILE FIRST ---- */
-/* ---- SASS MAP FOR DESKTOP FIRST - EMERGENCY ONLY ---- */
 /* ---- COLORE VARIABLES ---- */
 /* ---- MIXINS ---- */
 h1,
@@ -494,7 +502,7 @@ a:active {
   text-transform: uppercase;
   color: #000;
   font-weight: 700;
-  font-size: clamp(0.5rem, 0.75rem, 1rem);
+  font-size: 0.8rem;
 }
 a:hover,
 a:visited:hover,
@@ -533,6 +541,22 @@ video {
 .see-more__p {
   color: #AAA9B1;
   font-size: 10px;
+}
+
+/* ---- GENRE TAGS ---- */
+.genre-box {
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.genre-tag {
+  background-color: #DBE3FF;
+  padding: 4px 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  color: #88A4E8;
+  font-size: 8px;
 }
 
 /* - the forwadrs will automatically look for the _index.scss in each folder - */

@@ -23,12 +23,18 @@
 
 /* ---- HEADER ---- */
 .header{
-    padding: 0 1.5rem;
+    padding: 1.5rem 1.5rem;
     position: sticky;
-    top: 20px;
+    top: 0;
     height: 60px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    &__navigation{
+        align-self: center;
+        @include themed(){
+            color:  t(p--bold);
+        }
+    }
 }
 
 /* --- DARKMODE TOGGLE ---- */
@@ -80,7 +86,7 @@
 
 /* ---- NOW SHOWING ---- */
 .showing{
-    padding: 60px 0px 2rem 1.5rem;
+    padding: 20px 0px 2rem 1.5rem;
     max-width: 375px;
     &__flex{
         display: grid;
@@ -157,15 +163,6 @@
          flex-direction: column;
          justify-content: space-between;
      }
-    &__genre{
-        background-color: #DBE3FF;
-        padding: 4px 12px;
-        border-radius: 100px;
-        cursor: pointer;
-        color: #88A4E8;
-        font-size: 8px;
-    }
-
     &__h4{
         color: #9C9C9C;
         font-weight: 400;
@@ -186,6 +183,7 @@
     grid-template-rows: 300px auto;
     &__iframe{
         max-width: 375px;
+        border: none;
     }
 }
 
@@ -209,7 +207,10 @@
 }
 
 .details{
-    background-color: white;
+    background-color: #fff;
+    // @include themed(){
+    //     background-color: t(footer-bg);
+    // }
     border-radius: 10px;
     padding: 2rem 1.5rem;
     grid-area: 5 / 1 / 17 / 2;
@@ -239,9 +240,6 @@
         line-height: 22px;
         font-weight: 400;
     }
-    &__imdb{
-        margin-bottom: $base-margin;
-    }
     &__cast{
         display: grid;
         grid-template-columns: 1fr;
@@ -250,15 +248,11 @@
         display: flex;
         justify-content: space-between;
     }
-    &__genres{
-        margin-bottom: $base-margin;
-    }
 }
 
 .cast{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    //     overflow: hidden;
     padding: 0 1.5rem;
     gap: 13px;
     &__card{

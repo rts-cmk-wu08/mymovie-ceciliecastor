@@ -2,46 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   //-------------------------------------------
 
   /* ---- HEADER ---- */
-  header.innerHTML = `
-    <a href=""><i class="fa-solid fa-bars header__menu"></i></a>
-    <h2 class="header__h2 header__h2-index">MyMovies</h2>
-    <div class="header__toggle toggle">
-        <input type="checkbox" class="toggle__checkbox" name="checkbox">
-        <label for="checkbox" class="toggle__switch"></label>
-    </div>
-
-  `;
+  const navigationBack = document.querySelector(".header__icon");
+  navigationBack.classList.add("fa-solid", "fa-bars");
 
   /* ---- TOGGLE BUTTON ---- */
-
-  let darkMode = localStorage.getItem("darkMode");
-  const darkModeToggle = document.querySelector(".toggle");
-  // console.log(darkMode);
-
-  const enableDarkMode = () => {
-    document.body.classList.add("theme--dark");
-    localStorage.setItem("darkMode", "enabled");
-  };
-
-  const disableDarkMode = () => {
-    document.body.classList.remove("theme--dark");
-    localStorage.setItem("darkMode", null);
-  };
-
-  if (darkMode === "enabled") {
-    enableDarkMode();
-  }
-
-  darkModeToggle.addEventListener("click", () => {
-    //console.log("test");
-    darkMode = localStorage.getItem("darkMode");
-    if (darkMode !== "enabled") {
-      enableDarkMode();
-      //console.log(darkMode);
-    } else {
-      disableDarkMode();
-    }
-  });
 
   /* ---- NOW SHOWING MOVIES ---- */
   moviesShowing(nowShowing);
@@ -51,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((resOne) => resOne.json())
       .then((dataOne) => {
         showMoviesShowing(dataOne.results);
-        //console.log(dataOne.results);
+        console.log(dataOne.results);
       });
   }
 
@@ -143,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h4 class="popular__h4 basic__h4 basic__h4--grey"><i class="popular__star fa-sharp fa-solid fa-star"></i> ${
                   movie.vote_average
                 } / 10 IMDb</h4>
-                <div class="popular__genre-box">
+                <div class="popular__genre-box genre-box">
                 </div>
                 <h5 class="popular__h5 popular__h5--time basic__h5"></h5>
                 </a>
@@ -159,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let currentGenre = genres.find((genre) => genre.id == id);
 
         const genreTag = document.createElement("a");
-        genreTag.classList.add("popular__genre", "basic__a");
+        genreTag.classList.add("popular__genre", "genre-tag");
         genreTag.innerText = currentGenre.name;
         if (index < 3) {
           genreBox.append(genreTag);

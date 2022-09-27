@@ -7,12 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const movieParams = new URLSearchParams(window.location.search);
   const movieID = movieParams.get("id");
 
-  //HERO
-  fetch(
-    `https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=97d3331e327df20d1c0faca85f646034`
-  )
+  const navigationBack = document.querySelector(".header__icon");
+  navigationBack.classList.add("fa-solid", "fa-arrow-left");
+
+  /* ---- HERO ---- */
+  fetch(baseURL + `/movie/${movieID}/videos?` + apiKey)
     .then((response) => response.json())
     .then((trailer) => {
+      console.log(trailer);
       const heroPhoto = document.createElement("section");
       heroPhoto.classList.add("hero");
 
@@ -33,23 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
       heroPhoto.append(iframeEl);
     });
 
-  /* ---- MAIN DETAILS ---- */
+  /* ---- DETAILS PAGE ---- */
   fetch(
     `https://api.themoviedb.org/3/movie/${movieID}?api_key=97d3331e327df20d1c0faca85f646034`
   )
     .then((responseDetails) => responseDetails.json())
     .then((movieDetails) => {
-      //console.log(movieDetails);
-      header.innerHTML = `
-          <a href="/index.html" class="header__arrow"><i class="fa-solid fa-arrow-left"></i></a>
-          <h2 class="header__h2">MyMovies</h2>
-          <div class="header__toggle toggle">
-            <input type="checkbox" class="toggle__checkbox" name="checkbox">
-            <label for="checkbox" class="toggle__switch"></label>
-          </div>
-        `;
-
-      /* ---- DETAILS PAGE ---- */
+      console.log(movieDetails);
 
       //ROUNDED IMDB SCORE
       const imdbRounded =
@@ -65,12 +57,22 @@ document.addEventListener("DOMContentLoaded", () => {
         return rHours + "h " + rMinutes + "min";
       }
 
+      // let pgRating;
+      // if (movieDetails.adult === true) {
+      //   pgRating = "PG-13";
+      // } else {
+      //   pgRating = "P";
+      // }
+
+      // function pgRating(r);
+      let pgRating;
+
       const detailsSection = document.createElement("section");
       detailsSection.classList.add("details");
       detailsSection.innerHTML = `
       <h1 class="details__h1">${movieDetails.title}</h1>
       <h4 class="details__imdb details__p--light"><i class="showing__star fa-sharp fa-solid fa-star"></i> ${imdbRounded} / 10 IMDb</h4>
-      <div class="details__genres"></div>
+      <div class="details__genre-box genre-box"></div>
       <section class="details__section">
         <div class="details__length">
           <p class="details__p--light">Length</p>
@@ -81,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="details__rating">
           <p class="details__p--light">Rating</p>
-          <p class="details__p--dark"></p>
+          <p class="details__p--dark pg-rating"></p>
         </div>
       </section>
       <section class="details__description">
@@ -91,6 +93,24 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       mainElement.append(detailsSection);
+
+      fetch(
+        `https://api.themoviedb.org/3/movie/${movieID}/release_dates?api_key=97d3331e327df20d1c0faca85f646034`
+      )
+        .then((res) => res.json())
+        .then((object) => {
+          //console.log(object);
+          object.results.forEach((releaseDate) => {
+            console.log(releaseDate);
+            if (releaseDate.iso_3166_1 === "US") {
+              releaseDate.release_dates.forEach((rating) => {
+                document.querySelector(".pg-rating").innerHTML =
+                  rating.certification;
+                console.log(rating.certification);
+              });
+            }
+          });
+        });
 
       const languageBox = detailsSection.querySelector(".details__language");
       movieDetails.spoken_languages.forEach((language, index) => {
@@ -104,11 +124,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      let genreContainer = detailsSection.querySelector(".details__genres");
+      let genreContainer = detailsSection.querySelector(".details__genre-box");
       movieDetails.genres.forEach((id, index) => {
         //console.log(id);
         const genreTagDetails = document.createElement("a");
-        genreTagDetails.classList.add("popular__genre", "basic__a");
+        genreTagDetails.classList.add("popular__genre", "genre-tag");
         genreTagDetails.innerText = id.name;
 
         if (index < 3) {

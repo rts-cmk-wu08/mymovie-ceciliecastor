@@ -7,3 +7,18 @@
                 font-size: 10px;
            }
 }
+/* ---- GENRE TAGS ---- */
+.genre-box{
+        margin-bottom: 0.5rem;
+        display: flex;
+        gap: 0.5rem;
+}
+
+.genre-tag{
+        background-color: #DBE3FF;
+        padding: 4px 12px;
+        border-radius: 100px;
+        cursor: pointer;
+        color: #88A4E8;
+        font-size: 8px;
+}
