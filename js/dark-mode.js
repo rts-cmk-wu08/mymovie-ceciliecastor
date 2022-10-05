@@ -1,4 +1,4 @@
-export const darkmode = function () {
+const darkmode = function () {
   let darkMode = localStorage.getItem("darkMode");
   const darkModeToggle = document.querySelector(".toggle");
 

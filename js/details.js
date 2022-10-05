@@ -1,8 +1,3 @@
-import { genres } from "./genre.js";
-//-------------------------------
-
-genres();
-
 const mainSectionDetails = document.createElement("section");
 bodySection.append(mainSectionDetails);
 
@@ -16,15 +11,12 @@ navigationBack.classList.add("fa-solid", "fa-arrow-left");
 fetch(baseURL + `/movie/${movieID}/videos?` + apiKey)
   .then((response) => response.json())
   .then((trailer) => {
-    console.log(trailer);
     const heroPhoto = document.createElement("section");
     heroPhoto.classList.add("hero");
 
     mainElement.append(heroPhoto);
 
-    console.log(trailer);
     let lastVideo = trailer.results.pop();
-    console.log(lastVideo);
     const iframeEl = document.createElement("iframe");
     iframeEl.setAttribute(
       "src",
@@ -42,8 +34,6 @@ fetch(
 )
   .then((responseDetails) => responseDetails.json())
   .then((movieDetails) => {
-    console.log(movieDetails);
-
     //ROUNDED IMDB SCORE
     const imdbRounded =
       Math.round((movieDetails.vote_average + Number.EPSILON) * 10) / 10;
@@ -102,7 +92,6 @@ fetch(
       .then((object) => {
         //console.log(object);
         object.results.forEach((releaseDate) => {
-          console.log(releaseDate);
           if (releaseDate.iso_3166_1 === "US") {
             releaseDate.release_dates.forEach((rating) => {
               document.querySelector(".pg-rating").innerHTML =
@@ -127,7 +116,6 @@ fetch(
 
     let genreContainer = detailsSection.querySelector(".details__genre-box");
     movieDetails.genres.forEach((id, index) => {
-      //console.log(id);
       const genreTagDetails = document.createElement("a");
       genreTagDetails.classList.add("popular__genre", "genre-tag");
       genreTagDetails.innerText = id.name;
