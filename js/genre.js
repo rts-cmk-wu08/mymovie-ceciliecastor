@@ -1,6 +1,4 @@
-//export/inport data automatic?
-
-const genres = [
+export let genres = [
   {
     id: 28,
     name: "Action",

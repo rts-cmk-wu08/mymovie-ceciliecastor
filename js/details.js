@@ -1,75 +1,76 @@
-document.addEventListener("DOMContentLoaded", () => {
-  //-------------------------------------------------------------------------------
+import { genres } from "./genre.js";
+//-------------------------------
 
-  const mainSectionDetails = document.createElement("section");
-  bodySection.append(mainSectionDetails);
+genres();
 
-  const movieParams = new URLSearchParams(window.location.search);
-  const movieID = movieParams.get("id");
+const mainSectionDetails = document.createElement("section");
+bodySection.append(mainSectionDetails);
 
-  const navigationBack = document.querySelector(".header__icon");
-  navigationBack.classList.add("fa-solid", "fa-arrow-left");
+const movieParams = new URLSearchParams(window.location.search);
+const movieID = movieParams.get("id");
 
-  /* ---- HERO ---- */
-  fetch(baseURL + `/movie/${movieID}/videos?` + apiKey)
-    .then((response) => response.json())
-    .then((trailer) => {
-      console.log(trailer);
-      const heroPhoto = document.createElement("section");
-      heroPhoto.classList.add("hero");
+const navigationBack = document.querySelector(".header__icon");
+navigationBack.classList.add("fa-solid", "fa-arrow-left");
 
-      mainElement.append(heroPhoto);
+/* ---- HERO ---- */
+fetch(baseURL + `/movie/${movieID}/videos?` + apiKey)
+  .then((response) => response.json())
+  .then((trailer) => {
+    console.log(trailer);
+    const heroPhoto = document.createElement("section");
+    heroPhoto.classList.add("hero");
 
-      console.log(trailer);
-      let lastVideo = trailer.results.pop();
-      console.log(lastVideo);
-      const iframeEl = document.createElement("iframe");
-      //iframeEl.className.add("details__iframe");
-      iframeEl.setAttribute(
-        "src",
-        `//www.youtube.com/embed/${lastVideo.key}?&modestbranding=1&controls=0&mute=1`
-      );
-      iframeEl.setAttribute("style", "width :100%; height :300px;");
-      iframeEl.setAttribute("class", "hero__iframe");
+    mainElement.append(heroPhoto);
 
-      heroPhoto.append(iframeEl);
-    });
+    console.log(trailer);
+    let lastVideo = trailer.results.pop();
+    console.log(lastVideo);
+    const iframeEl = document.createElement("iframe");
+    iframeEl.setAttribute(
+      "src",
+      `//www.youtube.com/embed/${lastVideo.key}?&modestbranding=1&controls=0&mute=1`
+    );
+    iframeEl.setAttribute("style", "width :100%; height :300px;");
+    iframeEl.setAttribute("class", "hero__iframe");
 
-  /* ---- DETAILS PAGE ---- */
-  fetch(
-    `https://api.themoviedb.org/3/movie/${movieID}?api_key=97d3331e327df20d1c0faca85f646034`
-  )
-    .then((responseDetails) => responseDetails.json())
-    .then((movieDetails) => {
-      console.log(movieDetails);
+    heroPhoto.append(iframeEl);
+  });
 
-      //ROUNDED IMDB SCORE
-      const imdbRounded =
-        Math.round((movieDetails.vote_average + Number.EPSILON) * 10) / 10;
+/* ---- DETAILS PAGE ---- */
+fetch(
+  `https://api.themoviedb.org/3/movie/${movieID}?api_key=97d3331e327df20d1c0faca85f646034`
+)
+  .then((responseDetails) => responseDetails.json())
+  .then((movieDetails) => {
+    console.log(movieDetails);
 
-      //TIME CONVERTER FUNCTION
-      function timeConverter(n) {
-        const num = n;
-        const hours = num / 60;
-        const rHours = Math.floor(hours);
-        const minutes = (hours - rHours) * 60;
-        const rMinutes = Math.round(minutes);
-        return rHours + "h " + rMinutes + "min";
-      }
+    //ROUNDED IMDB SCORE
+    const imdbRounded =
+      Math.round((movieDetails.vote_average + Number.EPSILON) * 10) / 10;
 
-      // let pgRating;
-      // if (movieDetails.adult === true) {
-      //   pgRating = "PG-13";
-      // } else {
-      //   pgRating = "P";
-      // }
+    //TIME CONVERTER FUNCTION
+    function timeConverter(n) {
+      const num = n;
+      const hours = num / 60;
+      const rHours = Math.floor(hours);
+      const minutes = (hours - rHours) * 60;
+      const rMinutes = Math.round(minutes);
+      return rHours + "h " + rMinutes + "min";
+    }
 
-      // function pgRating(r);
-      let pgRating;
+    // let pgRating;
+    // if (movieDetails.adult === true) {
+    //   pgRating = "PG-13";
+    // } else {
+    //   pgRating = "P";
+    // }
 
-      const detailsSection = document.createElement("section");
-      detailsSection.classList.add("details");
-      detailsSection.innerHTML = `
+    // function pgRating(r);
+    let pgRating;
+
+    const detailsSection = document.createElement("section");
+    detailsSection.classList.add("details");
+    detailsSection.innerHTML = `
       <h1 class="details__h1">${movieDetails.title}</h1>
       <h4 class="details__imdb details__p--light"><i class="showing__star fa-sharp fa-solid fa-star"></i> ${imdbRounded} / 10 IMDb</h4>
       <div class="details__genre-box genre-box"></div>
@@ -92,62 +93,62 @@ document.addEventListener("DOMContentLoaded", () => {
       </section>
       `;
 
-      mainElement.append(detailsSection);
+    mainElement.append(detailsSection);
 
-      fetch(
-        `https://api.themoviedb.org/3/movie/${movieID}/release_dates?api_key=97d3331e327df20d1c0faca85f646034`
-      )
-        .then((res) => res.json())
-        .then((object) => {
-          //console.log(object);
-          object.results.forEach((releaseDate) => {
-            console.log(releaseDate);
-            if (releaseDate.iso_3166_1 === "US") {
-              releaseDate.release_dates.forEach((rating) => {
-                document.querySelector(".pg-rating").innerHTML =
-                  rating.certification;
-                console.log(rating.certification);
-              });
-            }
-          });
+    fetch(
+      `https://api.themoviedb.org/3/movie/${movieID}/release_dates?api_key=97d3331e327df20d1c0faca85f646034`
+    )
+      .then((res) => res.json())
+      .then((object) => {
+        //console.log(object);
+        object.results.forEach((releaseDate) => {
+          console.log(releaseDate);
+          if (releaseDate.iso_3166_1 === "US") {
+            releaseDate.release_dates.forEach((rating) => {
+              document.querySelector(".pg-rating").innerHTML =
+                rating.certification;
+              console.log(rating.certification);
+            });
+          }
         });
-
-      const languageBox = detailsSection.querySelector(".details__language");
-      movieDetails.spoken_languages.forEach((language, index) => {
-        let spokenLanguage = language;
-        //console.log(language);
-        const languageTag = document.createElement("p");
-        languageTag.classList.add("details__language-p", "details__p--dark");
-        languageTag.innerText = language.english_name;
-        if (index < 1) {
-          languageBox.append(languageTag);
-        }
       });
 
-      let genreContainer = detailsSection.querySelector(".details__genre-box");
-      movieDetails.genres.forEach((id, index) => {
-        //console.log(id);
-        const genreTagDetails = document.createElement("a");
-        genreTagDetails.classList.add("popular__genre", "genre-tag");
-        genreTagDetails.innerText = id.name;
-
-        if (index < 3) {
-          genreContainer.append(genreTagDetails);
-        }
-      });
+    const languageBox = detailsSection.querySelector(".details__language");
+    movieDetails.spoken_languages.forEach((language, index) => {
+      let spokenLanguage = language;
+      //console.log(language);
+      const languageTag = document.createElement("p");
+      languageTag.classList.add("details__language-p", "details__p--dark");
+      languageTag.innerText = language.english_name;
+      if (index < 1) {
+        languageBox.append(languageTag);
+      }
     });
 
-  //FOREACH LOOP THROUGH THE ACTORS
-  fetch(
-    `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=97d3331e327df20d1c0faca85f646034`
-  )
-    .then((responseCast) => responseCast.json())
-    .then((movieCast) => {
-      //console.log(movieCast);
+    let genreContainer = detailsSection.querySelector(".details__genre-box");
+    movieDetails.genres.forEach((id, index) => {
+      //console.log(id);
+      const genreTagDetails = document.createElement("a");
+      genreTagDetails.classList.add("popular__genre", "genre-tag");
+      genreTagDetails.innerText = id.name;
 
-      const castSection = document.createElement("section");
-      castSection.classList.add("cast");
-      castSection.innerHTML = `
+      if (index < 3) {
+        genreContainer.append(genreTagDetails);
+      }
+    });
+  });
+
+//FOREACH LOOP THROUGH THE ACTORS
+fetch(
+  `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=97d3331e327df20d1c0faca85f646034`
+)
+  .then((responseCast) => responseCast.json())
+  .then((movieCast) => {
+    //console.log(movieCast);
+
+    const castSection = document.createElement("section");
+    castSection.classList.add("cast");
+    castSection.innerHTML = `
         <div class="cast__heading">
           <h2 class="cast__h2">
             Cast
@@ -158,22 +159,19 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
 
-      mainElement.append(castSection);
+    mainElement.append(castSection);
 
-      movieCast.cast.forEach((castMember, index) => {
-        const castCard = document.createElement("article");
-        castCard.classList.add("cast__card");
-        castCard.innerHTML = `
+    movieCast.cast.forEach((castMember, index) => {
+      const castCard = document.createElement("article");
+      castCard.classList.add("cast__card");
+      castCard.innerHTML = `
           <img src="${
             imgURL + castMember.profile_path
           }" alt="" class="cast__img">
           <h3 class="cast__name">${castMember.name}</h3>
         `;
-        if (index < 4) {
-          castSection.append(castCard);
-        }
-      });
+      if (index < 4) {
+        castSection.append(castCard);
+      }
     });
-
-  //-------------------------------------------------------------------
-});
+  });
